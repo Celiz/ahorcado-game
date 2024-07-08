@@ -8,25 +8,35 @@ class Ahorcado {
         this.guessesDisplay = document.getElementById('guesses');
         this.messageDisplay = document.getElementById('message');
         this.hangmanImage = document.getElementById('hangman-image');
-        this.letterButtonsContainer = document.getElementById('letter-buttons');
+        this.letterRow1 = document.getElementById('letter-row-1');
+        this.letterRow2 = document.getElementById('letter-row-2');
 
         this.createLetterButtons();
     }
 
     createLetterButtons() {
         const alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-        for (let letter of alphabet) {
+        const midpoint = Math.ceil(alphabet.length / 2);
+        
+        for (let i = 0; i < alphabet.length; i++) {
             const button = document.createElement('button');
-            button.textContent = letter;
-            button.addEventListener('click', () => this.makeGuess(letter));
-            this.letterButtonsContainer.appendChild(button);
+            button.textContent = alphabet[i];
+            button.addEventListener('click', () => this.makeGuess(alphabet[i]));
+            
+            if (i < midpoint) {
+                this.letterRow1.appendChild(button);
+            } else {
+                this.letterRow2.appendChild(button);
+            }
         }
     }
 
     async initGame() {
         try {
-            const englishWord = await this.getWord();
-            this.word = englishWord.toUpperCase();
+            
+            const Word = await this.getWord();
+            const translatedWord = await this.translateWord(Word);
+            this.word = translatedWord.toUpperCase();
             this.updateWordDisplay();
             this.updateHangmanImage();
         } catch (error) {
@@ -36,13 +46,34 @@ class Ahorcado {
     }
 
     async getWord() {
-        const response = await fetch('https://random-word-api.herokuapp.com/word?lang=es');
+        const response = await fetch('https://random-word.ryanrk.com/api/en/word/random/?maxlength=7');
         if (!response.ok) {
-            throw new Error('Error al obtener la palabra en inglés');
+            throw new Error('No se pudo obtener una palabra aleatoria.');
         }
+
         const data = await response.json();
         return data[0];
     }
+
+
+    async translateWord(word) {
+        const response = await fetch(`https://api.mymemory.translated.net/get?q=${word}&langpair=en|es`);
+        if (!response.ok) {
+            throw new Error('No se pudo traducir la palabra.');
+        }
+
+        const data = await response.json();
+        return data.responseData.translatedText;
+    }
+
+
+    updateWordDisplay() {
+        this.wordDisplay.textContent = this.word
+            .split('')
+            .map(letter => this.guessedLetters.has(letter) ? letter : '_')
+            .join(' ');
+    }
+
 
     WordDisplay() {
         this.wordDisplay.textContent = this.word
@@ -65,8 +96,8 @@ class Ahorcado {
         this.guessedLetters.add(letter);
         this.guessesDisplay.textContent = `Letras intentadas: ${Array.from(this.guessedLetters).join(', ')}`;
 
-        // Disable the button for the guessed letter
-        const buttonElement = Array.from(this.letterButtonsContainer.children).find(button => button.textContent === letter);
+        const buttonElement = Array.from(this.letterRow1.children).concat(Array.from(this.letterRow2.children))
+            .find(button => button.textContent === letter);
         if (buttonElement) {
             buttonElement.disabled = true;
         }
@@ -92,7 +123,7 @@ class Ahorcado {
     }
 
     disableAllButtons() {
-        Array.from(this.letterButtonsContainer.children).forEach(button => {
+        Array.from(this.letterRow1.children).concat(Array.from(this.letterRow2.children)).forEach(button => {
             button.disabled = true;
         });
     }
