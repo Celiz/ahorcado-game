@@ -55,17 +55,6 @@ class Ahorcado {
         return data[0];
     }
 
-
-    async translateWord(word) {
-        const response = await fetch(`https://api.mymemory.translated.net/get?q=${word}&langpair=en|es`);
-        if (!response.ok) {
-            throw new Error('No se pudo traducir la palabra.');
-        }
-
-        const data = await response.json();
-        return data.responseData.translatedText;
-    }
-
     async translateWordDeepL(word) {
         const response = await fetch(`https://api-free.deepl.com/v2/translate?auth_key=a4d6d4a0-ec26-411f-aad0-f2d59213ce48:fx`+`&text=${word}&source_lang=EN&target_lang=ES`);
         if (!response.ok) {
