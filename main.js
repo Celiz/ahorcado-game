@@ -35,7 +35,7 @@ class Ahorcado {
         try {
             
             const Word = await this.getWord();
-            const translatedWord = await this.translateWord(Word);
+            const translatedWord = await this.translateWordDeepL(Word);
             this.word = translatedWord.toUpperCase();
             this.updateWordDisplay();
             this.updateHangmanImage();
@@ -46,7 +46,7 @@ class Ahorcado {
     }
 
     async getWord() {
-        const response = await fetch('https://random-word.ryanrk.com/api/en/word/random/?maxlength=7');
+        const response = await fetch('https://random-word.ryanrk.com/api/en/word/random/?maxlength=5');
         if (!response.ok) {
             throw new Error('No se pudo obtener una palabra aleatoria.');
         }
@@ -66,6 +66,15 @@ class Ahorcado {
         return data.responseData.translatedText;
     }
 
+    async translateWordDeepL(word) {
+        const response = await fetch(`https://api-free.deepl.com/v2/translate?auth_key=a4d6d4a0-ec26-411f-aad0-f2d59213ce48:fx`+`&text=${word}&source_lang=EN&target_lang=ES`);
+        if (!response.ok) {
+            throw new Error('No se pudo traducir la palabra.');
+        }
+        
+        const data = await response.json();
+        return data.translations[0].text;
+    }
 
     updateWordDisplay() {
         this.wordDisplay.textContent = this.word
