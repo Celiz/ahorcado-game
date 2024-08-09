@@ -61,3 +61,9 @@ body {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+
+
+#score-container{
+    padding: 1rem;
+}
