@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Ahorcado</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div id="game-container">
-        <h1>El Ahorcado</h1>
-        <img id="hangman-image" src="/public/hangman-0.png" alt="Ahorcado">
-        <div id="word-display"></div>
-        <div id="guesses">Letras intentadas: </div>
-        <div id="letter-buttons">
-            <div id="letter-row-1"></div>
-            <div id="letter-row-2"></div>
+    <main class="main">
+        <div id="game-container">
+            <h1>El Ahorcado</h1>
+            <img id="hangman-image" src="/public/hangman-0.png" alt="Ahorcado">
+            <div id="word-display"></div>
+            <div id="guesses">Letras intentadas: </div>
+            <div id="letter-buttons">
+                <div id="letter-row-1"></div>
+                <div id="letter-row-2"></div>
+            </div>
+            <p id="message"></p>
         </div>
-        <p id="message"></p>
-    </div>
 
-    <div id="score-container">
-        <h2>Puntuaciones</h2>
-        <p id="score">Puntuación: 0</p>
-        <table id="scoresTable">
-          <thead>
-            <tr>
-              <th>Posición</th>
-              <th>Jugador</th>
-              <th>Puntuación</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+        <div id="score-container">
+            <h2>Puntuaciones</h2>
+            <p id="score">Puntuación: 0</p>
+            <table id="scoresTable">
+                <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Jugador</th>
+                        <th>Puntuación</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
 
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-      <script type="module" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
+
 </html>
