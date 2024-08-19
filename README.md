@@ -25,7 +25,7 @@ El proyecto está organizado de la siguiente manera:
 ## Instalación
 1. Clona el repositorio en tu máquina local:
    ```
-   git clone https://github.com/tu-usuario/el-ahorcado.git
+   https://github.com/Celiz/ahorcado-game.git
    ```
 2. Navega al directorio del proyecto:
    ```
