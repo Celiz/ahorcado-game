@@ -65,7 +65,3 @@ Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request p
 ## Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
-## Contacto
-Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com).
-
-¡Disfruta jugando a "El Ahorcado"!
