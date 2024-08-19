@@ -29,7 +29,7 @@ El proyecto está organizado de la siguiente manera:
    ```
 2. Navega al directorio del proyecto:
    ```
-   cd el-ahorcado
+   cd ahorcado-game
    ```
 3. Abre el archivo `index.html` en tu navegador.
 
