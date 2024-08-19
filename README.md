@@ -56,12 +56,8 @@ El proyecto está organizado de la siguiente manera:
 Para utilizar Supabase en este proyecto:
 1. Crea una cuenta en [Supabase](https://supabase.io/).
 2. Crea un nuevo proyecto en Supabase.
-3. Obtén la URL de tu proyecto y la clave API anónima.
-4. Actualiza el archivo `js/supabaseClient.js` con tus credenciales.
+3. Crear una tabla llamada players con los campos, "player_name" de tipo text y "score" de tipo int8. 
+4. Obtén la URL de tu proyecto y la clave API anónima.
+5. Actualiza el archivo `js/supabaseClient.js` con tus credenciales.
 
-## Contribuciones
-Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio que te gustaría hacer.
-
-## Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
